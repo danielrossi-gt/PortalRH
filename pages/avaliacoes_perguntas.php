@@ -64,7 +64,7 @@
     <!-- Page Content -->
     <div class="container" style="margin-top:10px;">
 
-    <form method="post" action="grava_respostas.php" name="respostas">
+    <form method="post" action="grava_respostas_avaliacao.php" name="respostas">
         
         <div class="card" style="margin-top:20px">
             
