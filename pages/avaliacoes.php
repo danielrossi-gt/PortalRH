@@ -71,10 +71,17 @@
     <!-- Page Content -->
     <div class="container" style="margin-top:10px;">
 
+        <div class="row">
+            <div class="col-lg-12">
+                <!--<img src="http://via.placeholder.com/1151x250" class="img-fluid" alt="Responsive image">-->
+                <img src="img/topo.jpg" class="img-fluid" alt="Responsive image">
+            </div>  
+        </div>  
+
 <?php
     
     if ($sucesso == "SIM") {
-        echo "<div class='alert alert-success' role='alert'>
+        echo "<div class='alert alert-success' role='alert' style='margin-top: 10px'>
                 <span class='glyphicon glyphicon-ok' aria-hidden='true'></span> 
                 <b>Suas respostas foram gravadas com sucesso.</b>
               </div>";
@@ -82,7 +89,7 @@
 
 ?>
 
-        <div class="card" style="margin-top:20px">
+        <div class="card" style="margin-top:10px">
             
             <div class = "card-header" style="background-color: #3A4182; color:white;">
                 <div class="row">
@@ -94,7 +101,7 @@
 
             <div class="card-body"> 
 
-                <div class="row" style="padding-top:20px">
+                <div class="row" style="padding-top: 20px">
                     <div class="col-lg-12">
                         <p><b>Clique sobre a Avaliação para responder:</b></p>
                     </div>

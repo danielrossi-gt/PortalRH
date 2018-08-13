@@ -56,8 +56,6 @@
 ?>	    	
 		<div class="row">
 			<div class="col-lg-12">
-	
-				<!--<img src="http://via.placeholder.com/1151x250" class="img-fluid" alt="Responsive image">-->
 				<img src="img/portal.jpg" class="img-fluid" alt="Responsive image">
 			</div>  
 		</div>

@@ -64,6 +64,13 @@
     <!-- Page Content -->
     <div class="container" style="margin-top:10px;">
 
+    <div class="row">
+        <div class="col-lg-12">
+            <!--<img src="http://via.placeholder.com/1151x250" class="img-fluid" alt="Responsive image">-->
+            <img src="img/topo.jpg" class="img-fluid" alt="Responsive image">
+        </div>  
+    </div>          
+
     <form method="post" action="grava_respostas_avaliacao.php" name="respostas">
         
         <div class="card" style="margin-top:20px">

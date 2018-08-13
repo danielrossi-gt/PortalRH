@@ -3,6 +3,13 @@
     require_once("conn.php");
     $usuario = $_SESSION["usuario_chave"];
     $apelido = $_SESSION["apelido"];
+
+    if (isset($_GET["desenv"])) {
+        $desenv = "SIM";
+    }
+    else {
+        $desenv = "NAO";
+    }    
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +45,7 @@
 
   </head>
 
-  <body style="padding-top: 0px; margin-top:0px;">
+  <body style="padding-top: 0px; margin-top: 0px;">
 
     <!-- Navigation bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -60,7 +67,18 @@
     <!-- Navigation bar -->
     
     <!-- Page Content -->
-    <div class="container" style="margin-top:10px;">
+    <div class="container" style="margin-top: 10px;">
+
+<?php
+    
+    if ($desenv == "SIM") {
+        echo "<div class='alert alert-info' role='alert'>
+                <span class='glyphicon glyphicon-info-sign' aria-hidden='true'></span> 
+                <b>Opção atualmente em desenvolvimento.</b>
+              </div>";
+    }
+
+?>        
 
         <div class="row">
             <div class="col-lg-12">
@@ -84,11 +102,11 @@
                 <div class="row" style="text-align:center">
 
                     <div class="col-lg-4 float-left" style="padding: 10px">
-                        <a href="#"><img src="img/ponto.jpg" class="img-fluid" alt="Consulta de Ponto"></a>
+                        <a href="portal.php?desenv=SIM"><img src="img/ponto.jpg" class="img-fluid" alt="Consulta de Ponto"></a>
                     </div>    
 
                     <div class="col-lg-4 float-left" style="padding: 10px">
-                        <a href="#"><img src="img/dem_pagtos.jpg" class="img-fluid" alt="Demonstrativo de Pagamento"></a>
+                        <a href="portal.php?desenv=SIM"><img src="img/dem_pagtos.jpg" class="img-fluid" alt="Demonstrativo de Pagamento"></a>
                     </div>          
       
                     <div class="col-lg-4 float-left" style="padding: 10px">
