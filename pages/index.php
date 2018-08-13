@@ -1,3 +1,12 @@
+<?php
+    if (isset($_GET["falha_login"])) {
+        $falha = "SIM";
+    }
+    else {
+        $falha = "NAO";
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -8,11 +17,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="js/mascaras.js"></script>  
+
     <title>Portal RH</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<script src="js/mascaras.js"></script>	
+    <link href="../vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <style>
@@ -33,8 +44,19 @@
 
     <!-- Page Content -->
     <div class="container">
+<?php
+    
+    if ($falha == "SIM") {
+        echo "<div class='alert alert-danger' role='alert'>
+                <span class='glyphicon glyphicon-remove' aria-hidden='true'></span> 
+                <b>Usuário ou senha inválidos.</b>
+              </div>";
+    }
+
+?>	    	
 		<div class="row">
 			<div class="col-lg-12">
+	
 				<!--<img src="http://via.placeholder.com/1151x250" class="img-fluid" alt="Responsive image">-->
 				<img src="img/portal.jpg" class="img-fluid" alt="Responsive image">
 			</div>  

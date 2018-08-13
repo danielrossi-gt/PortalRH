@@ -22,14 +22,12 @@
 	oci_execute($ds);
 	oci_fetch($ds);
 	$cont = ocirowcount($ds);
+
+	echo "cont: ".$cont;
+
+	$login = 'NAO';
 	
-	if ($cont == 0) 
-	{
-		echo "<h3 align='center'>USUÁRIO INVÁLIDO!</h3><br/>";
-		echo "<p align='center'><a href='index.html'>VOLTAR</a></p>";
-		$login = "NAO";
-	}
-	else 
+	if ($cont > 0) 
 	{		
 
 		session_start();
@@ -54,6 +52,9 @@
 	
 	if ($login == "SIM") {
 		header("Location: portal.php");
+	}
+	else {
+		header("Location:index.php?falha_login=SIM");		
 	}
 	 
 ?>
