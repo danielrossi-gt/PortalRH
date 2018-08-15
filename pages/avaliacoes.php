@@ -132,7 +132,7 @@
     $cont = ocirowcount($ds);                       
 
     if ($cont == 0) {
-        echo "<li>Você não possui avaliações pendentes. $sql</li>";
+        echo "<li>Você não possui avaliações pendentes.</li>";
     }
     else {
 
