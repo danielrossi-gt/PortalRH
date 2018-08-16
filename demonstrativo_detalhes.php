@@ -215,7 +215,7 @@
                    FO.TIPO_EVENTO,
                    FO.REF_CALCULADO,
                    FO.VALOR_CALCULADO,
-                   FO.DATA_PAGTO, 
+                   TO_CHAR(FO.DATA_PAGTO, 'DD/MM/YYYY') DATA_PAGTO, 
                    FO.SALARIO_BASE, 
                    FO.BASE_INSS, 
                    FO.BASE_FGTS, 
