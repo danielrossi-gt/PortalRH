@@ -22,14 +22,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <script src="../vendor/jquery/jquery.min.js"></script>
-    <script src="js/cep.js"></script>       
+    <script src="vendor/jquery/jquery.min.js"></script>
     <script src="js/mascaras.js"></script>  
 
     <title>Portal RH</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <style>
@@ -102,15 +101,21 @@
                 <div class="row" style="text-align:center">
 
                     <div class="col-lg-4 float-left" style="padding: 10px">
-                        <a href="portal.php?desenv=SIM"><img src="img/ponto.jpg" class="img-fluid" alt="Consulta de Ponto"></a>
+                        <a href="portal.php?desenv=SIM">
+                            <img src="img/ponto.jpg" class="img-fluid" alt="Consulta de Ponto" data-toggle="tooltip" data-placement="top" title="Consulte suas informações do Ponto Eletrônico">
+                        </a>
                     </div>    
 
                     <div class="col-lg-4 float-left" style="padding: 10px">
-                        <a href="portal.php?desenv=SIM"><img src="img/dem_pagtos.jpg" class="img-fluid" alt="Demonstrativo de Pagamento"></a>
+                        <a href="demonstrativo.php">
+                            <img src="img/dem_pagtos.jpg" class="img-fluid" alt="Demonstrativo de Pagamento" data-toggle="tooltip" data-placement="top" title="Consulte e imprima os seus Demonstrativos de Pagamento">
+                        </a>
                     </div>          
       
                     <div class="col-lg-4 float-left" style="padding: 10px">
-                        <a href="avaliacoes.php"><img src="img/avaliacoes.jpg" class="img-fluid" alt="Avaliações"></a>
+                        <a href="avaliacoes.php">
+                            <img src="img/avaliacoes.jpg" class="img-fluid" alt="Avaliações" data-toggle="tooltip" data-placement="top" title="Verifique e responda suas Avaliações de Desempenho">
+                        </a>
                     </div>    
                           
                 </div>
@@ -121,8 +126,7 @@
     </div>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="js/validator.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   </body>
   

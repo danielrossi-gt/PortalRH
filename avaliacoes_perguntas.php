@@ -16,14 +16,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <script src="../vendor/jquery/jquery.min.js"></script>
-    <script src="js/cep.js"></script>       
-    <script src="js/mascaras.js"></script>  
+    <script src="vendor/jquery/jquery.min.js"></script>
+
 
     <title>Portal RH</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <style>
@@ -240,8 +239,7 @@
     </div>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="js/validator.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   </body>
   

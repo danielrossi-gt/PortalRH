@@ -3,6 +3,8 @@
 	require_once('conn.php');
 
 	$codigoBase = $_POST["codigoBase"];
+	$empresa = $_POST["empresa"];
+	$cnpj = $_POST["cnpj"];
 	$cpf = $_POST["txtCPFLogin"];
 	$senha = $_POST["txtSenhaLogin"];
 	$confSenha = "";
@@ -33,6 +35,8 @@
 		session_start();
 		$_SESSION["usuario_chave"] = $chave;
 		$_SESSION["codigo_base"] = $codigoBase;
+		$_SESSION["empresa"] = $empresa;
+		$_SESSION["cnpj"] = $cnpj;
 		$_SESSION["cpf"] = $cpf;
 
 		$sql = "SELECT NOME FROM FUNCIONARIOS_WEB WHERE CHAVE = $chave";

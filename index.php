@@ -17,13 +17,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
     <script src="js/mascaras.js"></script>  
 
     <title>Portal RH</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <style>
@@ -87,6 +87,8 @@
 								<input type="submit" name="btnOK" id="btnOK" value="Entrar" class="btn btn-lg btn-primary btn-block"/>
 							</fieldset>
 							<input type="hidden" name="codigoBase" value="900010">
+							<input type="hidden" name="empresa" value="LIMER-STAMP ESTAMPARIA, FERRAMENTARIA E USINAGEM LTDA">
+							<input type="hidden" name="cnpj" value="01.887.856/0001-93">
 						</form>								
 						
 					</div>
@@ -97,9 +99,8 @@
 	</div>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="../vendor/jquery/jquery.min.js"></script>
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="js/validator.min.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   </body>
   
