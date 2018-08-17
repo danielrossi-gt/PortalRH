@@ -55,6 +55,28 @@
                 padding-top: 56px;
             }
         }
+
+        @media (max-width: 767px) {
+            .holeriteFull {
+                display: none !important;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .holeriteMobile {
+                display: none !important;
+            }
+            .holeriteFull {
+                display: block;
+            }
+        }
+
+        @media print {
+            .holeriteMobile {display: none !important;}
+            .holeriteFull {display: block !important;}
+        }
+
+        
         td {
             padding: 3px;
         }
@@ -125,7 +147,8 @@
             </div>
 
             <div class="card-body"> 
-                <div id="holerite" class="row" style="padding: 20px"><div class="col-lg-12">
+                <div id="holerite" class="holeriteFull" style="padding: 20px">
+                    <div class="col-lg-12">
 
 <?php
 
@@ -133,7 +156,7 @@
                    SUBSTR(FO.ANO_MES, 5, 2) ||'/'||SUBSTR(FO.ANO_MES, 1, 4) COMPETENCIA,
                    FN.CODIGO,
                    FN.NOME,
-                   FN.DT_ADMISSAO,
+                   TO_CHAR(FN.DT_ADMISSAO, 'DD/MM/YYYY') DT_ADMISSAO,
                    FN.DESC_CUSTO,
                    FN.COD_UNID_FUNCIONAL,
                    SUBSTR(FN.CBO, 1, 1) ||'-'||SUBSTR(FN.CBO, 2, 2)||'.'||SUBSTR(FN.CBO, 4, 3) CBO,
@@ -361,6 +384,128 @@
 ?>
 
                 </div></div>
+
+
+            <div id="holeriteMobile" class="holeriteMobile" style="padding: 20px">
+                <table class='table table-sm' style='margin-bottom: 0px' border=1 width=100%>
+                    <tr><td class='txtTituloEventos'>Identificação</td></tr>
+                    <tr><td><span class='txtTitulo'>Competência</span></td></tr>
+                    <tr><td><?php echo $competencia ?></td><tr>
+                    <tr><td><span class='txtTitulo'>Código</span></td></tr>
+                    <tr><td><?php echo $codigo ?></td><tr>
+                    <tr><td><span class='txtTitulo'>Nome</span></td></tr>
+                    <tr><td><?php echo $nome ?></td></tr>    
+                    <!--<tr><td><span class='txtTitulo'>Data de Admissão</span></td></tr>
+                    <tr><td><?php echo $dtAdmissao ?></td><tr>    
+                    <tr><td><span class='txtTitulo'>Centro de Custo</span></td></tr>
+                    <tr><td><?php echo $descCusto ?></td><tr>
+                    <tr><td><span class='txtTitulo'>Unidade Funcional</span></td></tr>
+                    <tr><td><?php echo $codUnidFuncional ?></td><tr>
+                    <tr><td><span class='txtTitulo'>CBO</span></td></tr>
+                    <tr><td><?php echo $cbo ?></td><tr>    
+                    <tr><td><span class='txtTitulo'>CTPS</span></td></tr>
+                    <tr><td><?php echo $ctps ?></td><tr>
+                    <tr><td><span class='txtTitulo'>Cargo</span></td></tr>
+                    <tr><td><?php echo $descCargo ?></td><tr>
+                    <tr><td><span class='txtTitulo'>Banco/Agência</span></td></tr>
+                    <tr><td><?php echo $nomeBanco . "  " . $codBcoAge ?></td><tr>    
+                    <tr><td><span class='txtTitulo'>Conta</span></td></tr>
+                    <tr><td><?php echo $nroCC ?></td><tr> -->
+
+                </table>
+                <br />
+                <table class='table table-sm' style='margin-bottom: 0px' border=1 width=100%>
+                    <tr><td class='txtTituloEventos'>Eventos</td></tr>
+
+<?php
+
+    $sql = "SELECT FO.COD_EVENTO,
+                   FO.EVENTO,
+                   FO.TIPO_EVENTO,
+                   FO.REF_CALCULADO,
+                   FO.VALOR_CALCULADO,
+                   TO_CHAR(FO.DATA_PAGTO, 'DD/MM/YYYY') DATA_PAGTO, 
+                   FO.SALARIO_BASE, 
+                   FO.BASE_INSS, 
+                   FO.BASE_FGTS, 
+                   FO.FGTS_MES, 
+                   FO.BASE_IRRF   
+              FROM FOLHA_WEB FO,
+                   FUNCIONARIOS_WEB FN
+             WHERE FO.FUNCIONARIO = FN.CHAVE
+               AND FO.ANO_MES = $anoMes
+               AND FO.FUNCIONARIO = $usuario
+               AND FO.TIPO_MOVTO = '$tipoMovto'
+             ORDER BY FO.EVENTO";
+
+    $dsEvento = oci_parse($conn, $sql);   
+    oci_define_by_name($dsEvento, "COD_EVENTO", $codEvento);
+    oci_define_by_name($dsEvento, "EVENTO", $evento);
+    oci_define_by_name($dsEvento, "TIPO_EVENTO", $tipoEvento);
+    oci_define_by_name($dsEvento, "REF_CALCULADO", $refCalculado);
+    oci_define_by_name($dsEvento, "VALOR_CALCULADO", $valorCalculado);
+    oci_define_by_name($dsEvento, "DATA_PAGTO", $dataPagto);
+    oci_define_by_name($dsEvento, "SALARIO_BASE", $salarioBase);
+    oci_define_by_name($dsEvento, "BASE_INSS", $baseINSS);
+    oci_define_by_name($dsEvento, "BASE_FGTS", $baseFGTS);
+    oci_define_by_name($dsEvento, "FGTS_MES", $FGTSMes);
+    oci_define_by_name($dsEvento, "BASE_IRRF", $baseIRRF);
+    oci_execute($dsEvento);   
+    oci_fetch_all($dsEvento, $cont);
+
+    $totalVencimento = 0;
+    $totalDesconto = 0;
+
+    oci_execute($dsEvento);
+    while (oci_fetch($dsEvento)) { 
+
+        $refCalculadoFmt = number_format($refCalculado, 2, ',', '.');
+        $valorCalculadoFmt = number_format($valorCalculado, 2, ',', '.');
+
+        $salarioBase = number_format($salarioBase, 2, ',', '.');
+        $baseINSS = number_format($baseINSS, 2, ',', '.');
+        $baseFGTS = number_format($baseFGTS, 2, ',', '.');
+        $FGTSMes = number_format($FGTSMes, 2, ',', '.');
+        $baseIRRF = number_format($baseIRRF, 2, ',', '.');
+
+
+        echo "
+            <tr><td>
+                <span class='txtTitulo'>$evento ($tipoEvento)</span>
+            </td></tr>
+            <tr>
+                <td class='txtValor'>$valorCalculadoFmt</td> 
+            </td></tr>";
+    }
+
+?>
+                <tr><td><span class='txtTitulo'>Total Líquido</span></td></tr>
+                <tr><td class='txtValor'><?php echo $totalLiquidoFmt; ?></td></td></tr>
+
+
+                </table>
+
+                </table>
+                <br />
+                <table class='table table-sm' style='margin-bottom: 0px' border=1 width=100%>
+                    <tr><td class='txtTituloEventos'>Bases de Cálculos</td></tr>
+
+                    <tr><td><span class='txtTitulo'>Salario Base</span></td></tr>
+                    <tr><td class='txtValor'><?php echo $salarioBase; ?></td></td></tr>
+
+                    <tr><td><span class='txtTitulo'>Base de Cálculo INSS</span></td></tr>
+                    <tr><td class='txtValor'><?php echo $baseINSS; ?></td></td></tr>
+
+                    <tr><td><span class='txtTitulo'>Base de Cálculo FGTS</span></td></tr>
+                    <tr><td class='txtValor'><?php echo $baseFGTS; ?></td></td></tr>
+
+                    <tr><td><span class='txtTitulo'>Base de Cálculo IRRF</span></td></tr>
+                    <tr><td class='txtValor'><?php echo $baseIRRF; ?></td></td></tr>
+
+                </table>
+
+            </div>
+
 
             </div>      
 
