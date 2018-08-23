@@ -18,6 +18,9 @@
     oci_fetch_all($ds, $cont);
 
     oci_execute($ds);
+
+    $erro = "NAO";
+    
     while (oci_fetch($ds)) {
 
         if (isset($_POST[$chaveAvaliacao])) {
@@ -34,8 +37,6 @@
             $dsUpdate = oci_parse($conn, $sql);
             $exec = oci_execute($dsUpdate, OCI_NO_AUTO_COMMIT);
             
-            $erro = "NAO";
-                
             if (!$exec) {
                 $e = oci_error($dsUpdate);
                 oci_rollback($conn);
@@ -52,14 +53,15 @@
             
             oci_close($conn);
             
-            if ($erro == "NAO") {
-                header("Location: avaliacoes.php?sucesso=SIM");
-            }           
-
-
         }
 
     }
+
+    if ($erro == "NAO") {
+        header("Location: avaliacoes.php?sucesso=SIM");
+    }           
+
+
 
 
 ?>
