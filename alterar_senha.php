@@ -3,15 +3,6 @@
     require_once("conn.php");
     $usuario = $_SESSION["usuario_chave"];
     $apelido = $_SESSION["apelido"];
-    $codigoBase = $_SESSION["codigo_base"];
-
-    if (isset($_GET["sucesso"])) {
-        $sucesso = "SIM";
-    }
-    else {
-        $sucesso = "NAO";
-    }
-
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +16,6 @@
     <meta name="author" content="">
 
     <script src="vendor/jquery/jquery.min.js"></script>
-
     <title>Portal RH</title>
 
     <!-- Bootstrap core CSS -->
@@ -76,85 +66,52 @@
                 <img src="img/topo.jpg" class="img-fluid" alt="Responsive image">
             </div>  
         </div>  
-
-<?php
-    
-    if ($sucesso == "SIM") {
-        echo "<div class='alert alert-success' role='alert' style='margin-top: 10px'>
-                <span class='glyphicon glyphicon-ok' aria-hidden='true'></span> 
-                <b>Suas respostas foram gravadas com sucesso.</b>
-              </div>";
-    }
-
-?>
-
         <div class="card" style="margin-top:10px">
             
             <div class = "card-header" style="background-color: #3A4182; color:white;">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h3> Avaliações </h3>
-                    </div>          
+                        <h3> Alterar sua senha </h3>
+                    </div>     
                 </div>
+                    
             </div>
-
             <div class="card-body"> 
-
-                <div class="row" style="padding-top: 20px">
-                    <div class="col-lg-12">
-                        <p><b>Clique sobre a Avaliação para responder:</b></p>
+            <div class="row">
+            <div class="col-lg-3 float-left"></div>
+            <div class="col-lg-6 card_login" style="margin-top:10px">
+                <div class="card">
+                    <div class="card-body">
+                        <p>
+                            <b>Informe uma nova senha e a repita no campo de confirmação. Em seguida clique no botão Alterar Senha.</b><br/>
+                            
+                        </p>
+                            
+                        <form role="form" method="post" action="gravar_nova_senha.php" data-toggle="validator" name="login">
+                            <fieldset>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Senha (Mínimo de 6 caracteres)." name="txtSenha" id="txtSenha" type="password" value="" data-minlength="6" required>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Confirme sua senha" name="txtSenhaConfirma" id="txtSenhaConfirma" type="password" value="" data-match="#txtSenha" data-match-error="Atenção! As senhas não estão iguais." required>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <input type="submit" name="btnOK" id="btnOK" value="Alterar Senha" class="btn btn-lg btn-primary btn-block"/>
+                            </fieldset>
+                        </form>                             
+                        
                     </div>
                 </div>
-
-                <div class="row" style="padding: 20px">
-                    <ul>
-
-<?php
-
-    $sql = "SELECT DISTINCT
-                   CHAVE_MOVTO_AVALIACAO,
-                   DESCRICAO, 
-                   TO_CHAR(PERIODO_INICIAL, 'DD/MM/YYYY') PERIODO_INICIAL, 
-                   TO_CHAR(PERIODO_FINAL, 'DD/MM/YYYY') PERIODO_FINAL  
-              FROM AVALIACOES_WEB 
-             WHERE FUNCIONARIO = $usuario
-               AND CODIGO_BASE = $codigoBase
-             ORDER BY PERIODO_INICIAL";
-
-    $ds = oci_parse($conn, $sql);   
-    oci_define_by_name($ds, "CHAVE_MOVTO_AVALIACAO", $chave);
-    oci_define_by_name($ds, "DESCRICAO", $descricao);
-    oci_define_by_name($ds, "PERIODO_INICIAL", $inicio);
-    oci_define_by_name($ds, "PERIODO_FINAL", $final);
-    oci_execute($ds);   
-    oci_fetch_all($ds, $cont);
-
-    $cont = ocirowcount($ds);                       
-
-    if ($cont == 0) {
-        echo "<li>Você não possui avaliações pendentes.</li>";
-    }
-    else {
-
-        oci_execute($ds);
-        while (oci_fetch($ds)) {
-            echo "<li style='margin-bottom: 20px'><a href='avaliacoes_perguntas.php?chave=$chave'><b>$descricao</b></a><br /> Início: $inicio - Término: $final</li>";
-        }
-    }
-
-?>
-
-                    <ul>
-
-                </div>
-
+            </div>
             </div>      
-
+            </div>
         </div>    
     </div>
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/validator.min.js"></script>
 
   </body>
   

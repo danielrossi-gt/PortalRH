@@ -3,6 +3,7 @@
     require_once("conn.php");
     $usuario = $_SESSION["usuario_chave"];
     $apelido = $_SESSION["apelido"];
+    $codigoBase = $_SESSION["codigo_base"];
 ?>
 
 <!DOCTYPE html>
@@ -111,6 +112,7 @@
                             ANO_MES
               FROM FOLHA_WEB 
              WHERE FUNCIONARIO = $usuario
+               AND CODIGO_BASE = $codigoBase
              ORDER BY ANO_MES, TIPO_MOVTO  ";
 
     $ds = oci_parse($conn, $sql);   

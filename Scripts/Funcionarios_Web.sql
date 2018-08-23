@@ -5,7 +5,7 @@ CREATE TABLE FUNCIONARIOS_WEB
   CHAVE                NUMBER                   NOT NULL,
   CODIGO_BASE          NUMBER                   NOT NULL,
   CPF                  VARCHAR2(11)        NOT NULL,
-  SENHA                VARCHAR2(50)        NOT NULL,
+  SENHA                VARCHAR2(200)        NOT NULL,
   CODIGO               VARCHAR2(6)         NOT NULL,
   NUMERO_RG            VARCHAR2(15),
   NOME                 VARCHAR2(60),
@@ -34,7 +34,8 @@ CREATE TABLE FUNCIONARIOS_WEB
   DESC_CUSTO           VARCHAR2(30),
   COD_BCOAGE           VARCHAR2(8),
   NOME_BANCO	       VARCHAR2(30),
-  CTPS	               NUMBER(7)
+  CTPS	               NUMBER(7),
+  EMAIL		       VARCHAR2(80)
 );
 
 CREATE INDEX FUNCWEB_NOME_I ON FUNCIONARIOS_WEB (NOME);

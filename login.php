@@ -50,6 +50,28 @@
 		$login = "SIM";
 		$_SESSION["apelido"] = $apelido;
 
+		$sql = "SELECT SMTP_REQAUT, 
+					   SMTP_USUARIO_FOLHA, 
+					   SMTP_SENHA_FOLHA, 
+					   LOGIN_SMTP_USUARIO_FOLHA, 
+					   LOGIN_SMTP_SENHA_FOLHA 
+				  FROM PARAMS_WEB";
+
+		$ds = oci_parse($conn, $sql);	
+		oci_define_by_name($ds, "SMTP_REQAUT", $emailRequerAut);
+		oci_define_by_name($ds, "SMTP_USUARIO_FOLHA", $emailUsuarioSemAut);
+		oci_define_by_name($ds, "SMTP_SENHA_FOLHA", $emailSenhaSemAut);
+		oci_define_by_name($ds, "LOGIN_SMTP_USUARIO_FOLHA", $$emailUsuarioComAlt);
+		oci_define_by_name($ds, "LOGIN_SMTP_SENHA_FOLHA", $emailSenhaComAlt);
+		oci_execute($ds);
+		oci_fetch($ds);
+
+		$_SESSION["emailRequerAut"] = $emailRequerAut;
+		$_SESSION["emailUsuarioSemAut"] = $emailUsuarioSemAut;
+		$_SESSION["emailSenhaSemAut"] = $emailSenhaSemAut;
+		$_SESSION["emailUsuarioComAlt"] = $emailUsuarioComAlt;
+		$_SESSION["emailSenhaComAlt"] = $emailSenhaComAlt;								
+
 	}
 
 	oci_close($conn);		

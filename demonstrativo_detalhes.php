@@ -3,6 +3,7 @@
     require_once("conn.php");
     $usuario = $_SESSION["usuario_chave"];
     $apelido = $_SESSION["apelido"];
+    $codigoBase = $_SESSION["codigo_base"];
     $anoMes = $_GET["anomes"];
     $tipoMovto = $_GET["tipomovto"];
     $empresa = $_SESSION["empresa"];
@@ -170,6 +171,7 @@
              WHERE FO.FUNCIONARIO = FN.CHAVE
                AND FO.ANO_MES = '$anoMes'
                AND FO.FUNCIONARIO = $usuario
+               AND FO.CODIGO_BASE = $codigoBase
                AND FO.TIPO_MOVTO = 'FOLHA'";
 
     $ds = oci_parse($conn, $sql);   
@@ -250,6 +252,7 @@
                AND FO.ANO_MES = $anoMes
                AND FO.FUNCIONARIO = $usuario
                AND FO.TIPO_MOVTO = '$tipoMovto'
+               AND FO.CODIGO_BASE = $codigoBase
              ORDER BY FO.EVENTO";
 
     $dsEvento = oci_parse($conn, $sql);   
@@ -436,6 +439,7 @@
                AND FO.ANO_MES = $anoMes
                AND FO.FUNCIONARIO = $usuario
                AND FO.TIPO_MOVTO = '$tipoMovto'
+               AND FO.CODIGO_BASE = $codigoBase
              ORDER BY FO.EVENTO";
 
     $dsEvento = oci_parse($conn, $sql);   

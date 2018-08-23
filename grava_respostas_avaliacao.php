@@ -4,8 +4,13 @@
     $usuario = $_SESSION["usuario_chave"];
     $apelido = $_SESSION["apelido"];
     $chave = $_POST["chave"];
+    $codigoBase = $_SESSION["codigo_base"];
 
-    $sql = "SELECT CHAVE_AVALIACAO_FUNC_ITEM FROM AVALIACOES_WEB WHERE FUNCIONARIO = $usuario AND CHAVE_MOVTO_AVALIACAO = $chave";
+    $sql = "SELECT CHAVE_AVALIACAO_FUNC_ITEM 
+              FROM AVALIACOES_WEB 
+             WHERE FUNCIONARIO = $usuario 
+               AND CHAVE_MOVTO_AVALIACAO = $chave 
+               AND CODIGO_BASE = $codigoBase";
 
     $ds = oci_parse($conn, $sql);   
     oci_define_by_name($ds, "CHAVE_AVALIACAO_FUNC_ITEM", $chaveAvaliacao);
@@ -19,7 +24,10 @@
             //echo "$chaveAvaliacao = " . $_POST[$chaveAvaliacao] ."<br />";
             $resposta = $_POST[$chaveAvaliacao];
 
-            $sql = "UPDATE AVALIACOES_WEB SET RESPOSTA = $resposta WHERE CHAVE_AVALIACAO_FUNC_ITEM = $chaveAvaliacao";
+            $sql = "UPDATE AVALIACOES_WEB 
+                       SET RESPOSTA = $resposta 
+                     WHERE CHAVE_AVALIACAO_FUNC_ITEM = $chaveAvaliacao 
+                       AND CODIGO_BASE = $codigoBase";
 
             echo $sql;
 

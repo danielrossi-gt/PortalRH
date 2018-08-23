@@ -10,6 +10,14 @@
     else {
         $desenv = "NAO";
     }    
+
+    if (isset($_GET["senha"])) {
+        $senha = $_GET["senha"];
+    }
+    else {
+        $senha = 'NAO';
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -40,6 +48,26 @@
                 padding-top: 56px;
             }
         }
+
+        @media (min-height: 699px) {
+            .cabecalho_mobile {
+                display: none !important;
+                
+            }
+            .cabecalho {
+                display: block;
+            }
+        }
+
+        @media (max-height: 698px) {
+            .cabecalho_mobile {
+                display: block;
+            }
+            .cabecalho {
+                display: none !important;
+            }
+        }
+
     </style>
 
   </head>
@@ -77,13 +105,33 @@
               </div>";
     }
 
+    if ($senha != "NAO") {
+
+        if ($senha != "ERRO") {
+             echo "<div class='alert alert-success' role='alert'>
+                    <span class='glyphicon glyphicon-ok' aria-hidden='true'></span> 
+                    <b>Sua senha foi alterada com sucesso.</b>
+                  </div>"; 
+        }
+        else {
+            echo "<div class='alert alert-danger' role='alert'>
+                    <span class='glyphicon glyphicon-remove' aria-hidden='true'></span> 
+                    <b>Não foi possível alterar sua senha.</b>
+                  </div>";            
+        }
+    }
+
+
 ?>        
 
         <div class="row">
-            <div class="col-lg-12">
-                <!--<img src="http://via.placeholder.com/1151x250" class="img-fluid" alt="Responsive image">-->
-                <img src="img/portal.jpg" class="img-fluid" alt="Responsive image">
+            <div class="col-lg-12 cabecalho">
+                <img src="img/portal_mobile.jpg" class="img-fluid" alt="Responsive image">
             </div>  
+            <div class="col-lg-12 cabecalho_mobile">
+                <img src="img/topo.jpg" class="img-fluid" alt="Responsive image">
+            </div>  
+
         </div>        
         
         <div class="card" style="margin-top:20px">
@@ -100,23 +148,29 @@
 
                 <div class="row" style="text-align:center">
 
-                    <div class="col-lg-4 float-left" style="padding: 10px">
+                    <div class="col-lg-3 float-left" style="padding: 10px">
                         <a href="portal.php?desenv=SIM">
                             <img src="img/ponto.jpg" class="img-fluid" alt="Consulta de Ponto" data-toggle="tooltip" data-placement="top" title="Consulte suas informações do Ponto Eletrônico">
                         </a>
                     </div>    
 
-                    <div class="col-lg-4 float-left" style="padding: 10px">
+                    <div class="col-lg-3 float-left" style="padding: 10px">
                         <a href="demonstrativo.php">
                             <img src="img/dem_pagtos.jpg" class="img-fluid" alt="Demonstrativo de Pagamento" data-toggle="tooltip" data-placement="top" title="Consulte e imprima os seus Demonstrativos de Pagamento">
                         </a>
                     </div>          
       
-                    <div class="col-lg-4 float-left" style="padding: 10px">
+                    <div class="col-lg-3 float-left" style="padding: 10px">
                         <a href="avaliacoes.php">
                             <img src="img/avaliacoes.jpg" class="img-fluid" alt="Avaliações" data-toggle="tooltip" data-placement="top" title="Verifique e responda suas Avaliações de Desempenho">
                         </a>
                     </div>    
+
+                    <div class="col-lg-3 float-left" style="padding: 10px">
+                        <a href="alterar_senha.php">
+                            <img src="img/alterar_senha.jpg" class="img-fluid" alt="Alterar Senha" data-toggle="tooltip" data-placement="top" title="Mudar sua senha atual">
+                        </a>
+                    </div>                        
                           
                 </div>
 

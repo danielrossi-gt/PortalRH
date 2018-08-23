@@ -42,44 +42,7 @@
 			body {
 				padding-top: 10px;
 			}
-
-            .portal {
-                display: block;                
-            }
-            .portal_mobile {
-                display: none !important;
-            }
 		}
-
-        @media (max-width: 991px) {
-            .portal {
-                display: none !important;
-            }
-            .portal_mobile {
-                display: block;
-            }
-        }		
-
-        @media (min-width: 1200px) {
-            .card_login {
-            	padding-top: 60px;
-            }
-        } 
-
-        @media (min-width: 1200px) {
-            .card_login {
-            	padding-top: 65px;
-            }
-        }  
-
-        @media (max-width: 1199px) {
-            .card_login {
-            	padding-top: 20px;
-            }
-            .menos_padding {
-            	padding: 2px;
-            }
-        }          
 
     </style>
 
@@ -89,7 +52,6 @@
 
     <!-- Page Content -->
     <div class="container">
-
 <?php
     
     if ($falha == "SIM") {
@@ -100,41 +62,33 @@
     }
 
     if ($emailEnviado != "NAO") {
-
-    	if ($emailEnviado != 'INVALIDO') {
-	        echo "<div class='alert alert-success' role='alert'>
-	                <span class='glyphicon glyphicon-envelope' aria-hidden='true'></span> 
-	                <b>Sua senha foi enviada para o e-mail $emailEnviado</b>
-	              </div>"; 
-	    }
-	    else {
-	        echo "<div class='alert alert-danger' role='alert'>
-	                <span class='glyphicon glyphicon-remove' aria-hidden='true'></span> 
-	                <b>Não existe um e-mail válido para o CPF informado.</b>
-	              </div>";
-        }
-        
+        echo "<div class='alert alert-success' role='alert'>
+                <span class='glyphicon glyphicon-envelope' aria-hidden='true'></span> 
+                <b>Sua senha foi enviada para o e-mail $emailEnviado</b>
+              </div>";
     }    
 
 ?>	    	
-
-		<div class="row" style="margin-top: 20px">
-			<div class="col-lg-6 portal">
+		<div class="row">
+			<div class="col-lg-12">
 				<img src="img/portal.jpg" class="img-fluid" alt="Responsive image">
-			</div> 
-			<div class="col-lg-12 portal_mobile">
-				<img src="img/portal_mobile.jpg" class="img-fluid" alt="Responsive image">
 			</div>  
+		</div>
+		<div class="row" style="margin-top: 20px">
+			<div class="col-lg-3">
+				&nbsp;
+			</div>
 			<!-- Login -->
-			<div class="col-lg-6 card_login" style="margin-top:10px">
+			<div class="col-lg-6" style="margin-top:10px">
 				<div class="card">
-					<div class = "card-header menos_padding">
-						<h4> Faça seu login: </h4>
+					<div class = "card-header">
+						<h4> Faça seu login: </h3>
 					</div>
 					<div class="card-body">
 						<p>
 							<b>Informe seu CPF e sua senha para acessar o portal.</b><br/>
-							Se você nunca utilizou o portal ou esqueceu sua senha, clique no link "Primeiro Acesso/Recuperar senha".<br/>
+							Se você nunca utilizou o portal, clique no link "Primeiro Acesso" para gerar a sua senha.
+							Se não lembra a sua senha, clique no link "Esqueci minha senha".<br/>
 						</p>
 							
 						<form role="form" method="post" action="login.php" data-toggle="validator" name="login">
@@ -148,7 +102,8 @@
 									<div class="help-block with-errors"></div>
 								</div>
 								<div class="form-group" style="padding-bottom:20px">
-									<div class="col-lg-12 float-left"><a href="recuperar_senha.php">Primeiro acesso/Recuperar senha</a></div>
+									<div class="col-lg-6 float-left"><a href="recuperar_senha.php">Primeiro acesso</a></div>
+									<div class="col-lg-6 float-left text-right"><a href="recuperar_senha.php">Esqueci minha senha</a></div>
 								</div>
 
 								<input type="submit" name="btnOK" id="btnOK" value="Entrar" class="btn btn-lg btn-primary btn-block"/>

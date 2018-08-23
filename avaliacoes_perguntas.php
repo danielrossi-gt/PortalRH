@@ -4,6 +4,7 @@
     $usuario = $_SESSION["usuario_chave"];
     $apelido = $_SESSION["apelido"];
     $chave = $_GET["chave"];
+    $codigoBase = $_SESSION["codigo_base"];
 ?>
 
 <!DOCTYPE html>
@@ -92,6 +93,7 @@
               FROM AVALIACOES_WEB 
              WHERE FUNCIONARIO = $usuario 
                AND CHAVE_MOVTO_AVALIACAO = $chave 
+               AND CODIGO_BASE = $codigoBase
              ORDER BY CODIGO_TITULO_AVALIACAO";
 
     $ds = oci_parse($conn, $sql);   
@@ -113,6 +115,7 @@
                  WHERE FUNCIONARIO = $usuario
                    AND CHAVE_MOVTO_AVALIACAO = $chave
                    AND CODIGO_TITULO_AVALIACAO = $codigo 
+                   AND CODIGO_BASE = $codigoBase
                  ORDER BY CODIGO_TITULO_AVALIACAO";
 
         $dsPerg = oci_parse($conn, $sql);   
