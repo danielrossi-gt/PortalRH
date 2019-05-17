@@ -57,7 +57,8 @@
 					   SMTP_SENHA_FOLHA, 
 					   LOGIN_SMTP_USUARIO_FOLHA, 
 					   LOGIN_SMTP_SENHA_FOLHA 
-				  FROM PARAMS_WEB";
+				  FROM PARAMS_WEB
+				 WHERE CODIGO_BASE = $codigoBase";
 
 		$ds = oci_parse($conn, $sql);	
 		oci_define_by_name($ds, "SMTP_SERVIDOR", $emailSMTPServidor);

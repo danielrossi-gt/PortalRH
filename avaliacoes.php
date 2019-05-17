@@ -119,6 +119,7 @@
               FROM AVALIACOES_WEB 
              WHERE FUNCIONARIO = $usuario
                AND CODIGO_BASE = $codigoBase
+               AND STATUS = 'EM ABERTO'
              ORDER BY PERIODO_INICIAL";
 
     $ds = oci_parse($conn, $sql);   

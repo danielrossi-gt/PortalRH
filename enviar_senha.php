@@ -3,6 +3,8 @@
 	require_once('conn.php');
 	require_once('vendor/phpmailer/class.phpmailer.php');
 
+	$codigoBase = $_POST["codigoBase"];
+
 	$sql = "SELECT SMTP_SERVIDOR, 
 				   SMTP_PORTA,
 				   SMTP_REQAUT, 
@@ -10,7 +12,8 @@
 				   SMTP_SENHA_FOLHA, 
 				   LOGIN_SMTP_USUARIO_FOLHA, 
 				   LOGIN_SMTP_SENHA_FOLHA 
-			  FROM PARAMS_WEB";
+			  FROM PARAMS_WEB
+			 WHERE CODIGO_BASE = $codigoBase";
 
 	$ds = oci_parse($conn, $sql);	
 	oci_define_by_name($ds, "SMTP_SERVIDOR", $emailSMTPServidor);
@@ -24,17 +27,17 @@
 	oci_fetch($ds);
 
 	function gerar_senha($tamanho, $maiusculas, $minusculas, $numeros, $simbolos){
-	  $ma = "ABCDEFGHIJKLMNOPQRSTUVYXWZ"; // $ma contem as letras maiúsculas
-	  $mi = "abcdefghijklmnopqrstuvyxwz"; // $mi contem as letras minusculas
-	  $nu = "0123456789"; // $nu contem os números
-	  $si = "!@#$%¨&*()_+="; // $si contem os símbolos
+	  	$ma = "ABCDEFGHIJKLMNOPQRSTUVYXWZ"; // $ma contem as letras maiúsculas
+	  	$mi = "abcdefghijklmnopqrstuvyxwz"; // $mi contem as letras minusculas
+	  	$nu = "0123456789"; // $nu contem os números
+	  	//$si = "!@#$%¨&*()_+="; // $si contem os símbolos
 
-	  $senha = '';
+	  	$senha = '';
 
-	  if ($maiusculas){
+	  	if ($maiusculas){
 	        // se $maiusculas for "true", a variável $ma é embaralhada e adicionada para a variável $senha
 	        $senha .= str_shuffle($ma);
-	  }
+	  	}
 	 
 	    if ($minusculas){
 	        // se $minusculas for "true", a variável $mi é embaralhada e adicionada para a variável $senha
@@ -55,7 +58,6 @@
 	    return substr(str_shuffle($senha),0,$tamanho);
 	}
 
-	$codigoBase = $_POST["codigoBase"];
 	$empresa = $_POST["empresa"];
 	$cnpj = $_POST["cnpj"];
 	$cpf = $_POST["txtCPFLogin"];
@@ -137,7 +139,7 @@
 				<html lang='pt-br'>
 				<body>
 
-				<img src='http://cloud.memphis.com.br/mph_cloud_portal_rh/img/portal.jpg' height=208 width=800 />
+				<img src='http://cloud.memphis.com.br/mph_cloud_portal_rh/img/portal_mobile.jpg' width=800 />
 
 				<p><b>Olá $apelido<b> <br/><br/>
 				
@@ -150,9 +152,14 @@
 			";
 			$mail->AltBody = '';	
 			
-			$enviado = $mail->Send();	
-
-			header("Location:index.php?email_enviado=$email");		
+			try {
+			  	$mail->Send();		
+			  	header("Location:index.php?email_enviado=$email");		
+			}
+			catch (phpmailerException $e) {
+      			echo $e->errorMessage(); //Mensagem de erro costumizada do PHPMailer
+            }
+			
 		}
 		else {
 			header("Location:index.php?email_enviado=INVALIDO");

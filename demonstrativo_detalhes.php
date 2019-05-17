@@ -172,7 +172,7 @@
                AND FO.ANO_MES = '$anoMes'
                AND FO.FUNCIONARIO = $usuario
                AND FO.CODIGO_BASE = $codigoBase
-               AND FO.TIPO_MOVTO = 'FOLHA'";
+               AND FO.TIPO_MOVTO = '$tipoMovto'";
 
     $ds = oci_parse($conn, $sql);   
     oci_define_by_name($ds, "COMPETENCIA", $competencia);
@@ -197,7 +197,7 @@
             </tr>
             <tr>
                 <td rowspan=2 class='align-middle text-center' style='padding: 0px;'>
-                    <img src='.././mph_cloud_portal_rh/img/dp_empresa.jpg' /> </td>
+                    <img src='img/dp_empresa.jpg' /> </td>
                 <td colspan=5><span class='txtTitulo'>Empresa</span><br /><span>$empresa</span></td>
             </tr>
             <tr>
@@ -207,7 +207,7 @@
 
             <tr>
                 <td rowspan=3 class='align-middle text-center' style='padding: 0px; text-align:center'>
-                    <img style='align: center' src='.././mph_cloud_portal_rh/img/dp_funcionario.jpg' />
+                    <img style='align: center' src='img/dp_funcionario.jpg' />
                 </td>
                 <td colspan=5><span class='txtTitulo'>Nome</span><br /><span>$codigo &nbsp; $nome</span></td>
             </tr>
@@ -253,7 +253,7 @@
                AND FO.FUNCIONARIO = $usuario
                AND FO.TIPO_MOVTO = '$tipoMovto'
                AND FO.CODIGO_BASE = $codigoBase
-             ORDER BY FO.EVENTO";
+             ORDER BY FO.TIPO_EVENTO DESC, FO.COD_EVENTO";
 
     $dsEvento = oci_parse($conn, $sql);   
     oci_define_by_name($dsEvento, "COD_EVENTO", $codEvento);
@@ -283,7 +283,7 @@
             <tr>
                 <td width=10%>$codEvento</td>
                 <td>$evento</td>
-                <td width=15% class=txtValor>$refCalculado</td>";
+                <td width=15% class=txtValor>$refCalculadoFmt</td>";
                 
         if ($tipoEvento == 'VENCIMENTO') {
             echo "

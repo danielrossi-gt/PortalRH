@@ -149,7 +149,7 @@
                 <div class="row" style="text-align:center">
 
                     <div class="col-lg-3 float-left" style="padding: 10px">
-                        <a href="portal.php?desenv=SIM">
+                        <a href="ponto.php">
                             <img src="img/ponto.jpg" class="img-fluid" alt="Consulta de Ponto" data-toggle="tooltip" data-placement="top" title="Consulte suas informações do Ponto Eletrônico">
                         </a>
                     </div>    

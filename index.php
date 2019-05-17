@@ -25,6 +25,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+    <meta http-equiv="pragma" content="no-cache" />    
+
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="js/mascaras.js"></script>  
 
@@ -153,9 +159,9 @@
 
 								<input type="submit" name="btnOK" id="btnOK" value="Entrar" class="btn btn-lg btn-primary btn-block"/>
 							</fieldset>
-							<input type="hidden" name="codigoBase" value="900010">
-							<input type="hidden" name="empresa" value="LIMER-STAMP ESTAMPARIA, FERRAMENTARIA E USINAGEM LTDA">
-							<input type="hidden" name="cnpj" value="01.887.856/0001-93">
+                            <!-- Informações da Empresa -->
+                            <?php  require "empresa.php";  ?>
+                            <!-- Informações da Empresa -->
 						</form>								
 						
 					</div>

@@ -63,9 +63,9 @@
 								</div>
 								<input type="submit" name="btnOK" id="btnOK" value="Gerar Senha" class="btn btn-lg btn-primary btn-block"/>
 							</fieldset>
-							<input type="hidden" name="codigoBase" value="900010">
-							<input type="hidden" name="empresa" value="LIMER-STAMP ESTAMPARIA, FERRAMENTARIA E USINAGEM LTDA">
-							<input type="hidden" name="cnpj" value="01.887.856/0001-93">
+                            <!-- Informações da Empresa -->
+                            <?php  require "empresa.php";  ?>
+                            <!-- Informações da Empresa -->
 						</form>								
 						
 					</div>

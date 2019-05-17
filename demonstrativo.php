@@ -126,7 +126,7 @@
     $cont = ocirowcount($ds);                       
 
     if ($cont == 0) {
-        echo "<li>Você não demonstrativos de pagamento.</li>";
+        echo "<li>Você não possui demonstrativos de pagamento.</li>";
     }
     else {
 

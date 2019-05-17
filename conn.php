@@ -2,7 +2,7 @@
 
 	//putenv("NLS_LANG=BRAZILIAN PORTUGUESE_BRAZIL.WE8ISO8859P1") or die("Falha ao inserir a variavel de ambiente");
 	putenv("NLS_LANG=AMERICAN_AMERICA.AL32UTF8") or die("Falha ao inserir a variavel de ambiente");
-	$conn = oci_connect('MPH_CLOUD', 'sah', '192.170.10.8:1521/ORCL');
+	$conn = oci_connect('MPH_CLOUD', 'sah', 'cloud.memphis.com.br:1521/XE');
 	header('Content-Type: text/html; charset=utf-8'); 
 	
 	/*error_reporting(E_ERROR);*/
